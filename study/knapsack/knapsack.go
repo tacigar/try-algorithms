@@ -41,7 +41,7 @@ func calcKnapsackWithDP(n int, ws, ps []int, maxw int) int {
 
 	for w := 0; w <= maxw; w++ {
 		if w >= ws[0] {
-			dp[0][w] = ws[0]
+			dp[0][w] = ps[0]
 		}
 	}
 
