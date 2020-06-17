@@ -12,27 +12,33 @@ func main() {
 	scanner.Buffer(buf, 1000000009)
 	scanner.Split(bufio.ScanWords)
 
-	var s, t []rune
+	var s, t string
 	if scanner.Scan() {
-		s = []rune(scanner.Text())
+		s = scanner.Text()
 	}
 	if scanner.Scan() {
-		t = []rune(scanner.Text())
+		t = scanner.Text()
 	}
 
-	ss := map[rune]rune{}
-	tt := map[rune]rune{}
+	c := 1
+	m1 := map[byte]int{}
+	m2 := map[byte]int{}
 
 	for i := 0; i < len(s); i++ {
-		if _, ok := ss[s[i]]; !ok {
-			ss[s[i]] = t[i]
-		}
-		if _, ok := tt[t[i]]; !ok {
-			tt[t[i]] = s[i]
-		}
-		if ss[s[i]] != t[i] || tt[t[i]] != s[i] {
-			fmt.Println("No")
-			return
+		if m1[s[i]] == 0 {
+			if m2[t[i]] == 0 {
+				m1[s[i]] = c
+				m2[t[i]] = c
+				c++
+			} else {
+				fmt.Println("No")
+				return
+			}
+		} else {
+			if m1[s[i]] != m2[t[i]] {
+				fmt.Println("No")
+				return
+			}
 		}
 	}
 	fmt.Println("Yes")
