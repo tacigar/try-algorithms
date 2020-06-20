@@ -16,15 +16,15 @@ func Pow10(n int) int {
 
 func f(base, digit int) []int {
 	var ret []int
-	if v := base + Pow10(digit)*3; v < n {
+	if v := base + Pow10(digit)*3; v <= n {
 		ret = append(ret, v)
 		ret = append(ret, f(v, digit+1)...)
 	}
-	if v := base + Pow10(digit)*5; v < n {
+	if v := base + Pow10(digit)*5; v <= n {
 		ret = append(ret, v)
 		ret = append(ret, f(v, digit+1)...)
 	}
-	if v := base + Pow10(digit)*7; v < n {
+	if v := base + Pow10(digit)*7; v <= n {
 		ret = append(ret, v)
 		ret = append(ret, f(v, digit+1)...)
 	}
