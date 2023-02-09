@@ -4,15 +4,16 @@ import "fmt"
 
 func SelectionSort(a []int) []int {
 	for i := 0; i < len(a); i++ {
-		min := a[i]
+		m := a[i]
 		mi := i
 		for j := i + 1; j < len(a); j++ {
-			if a[j] < min {
-				min = a[j]
+			if a[j] < m {
+				m = a[j]
 				mi = j
 			}
 		}
-		a[mi], a[i] = a[i], a[mi]
+		a[mi] = a[i]
+		a[i] = m
 	}
 	return a
 }
