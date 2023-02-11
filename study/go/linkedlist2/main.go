@@ -40,8 +40,8 @@ func (l *LinkedList) InsertAt(value string, index int) error {
 		return nil
 	}
 
-	x := l.sentinel
-	for i := 0; i < index; i++ {
+	x := l.sentinel.next
+	for i := 0; i < index-1; i++ {
 		x = x.next
 	}
 	n := &Node{prev: x, next: x.next, value: value}
@@ -57,8 +57,8 @@ func (l *LinkedList) DeletedAt(index int) error {
 	}
 	l.length -= 1
 
-	x := l.sentinel
-	for i := 0; i <= index; i++ {
+	x := l.sentinel.next
+	for i := 0; i <= index-1; i++ {
 		x = x.next
 	}
 	x.prev.next = x.next
