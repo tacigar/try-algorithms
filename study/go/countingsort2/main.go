@@ -12,8 +12,8 @@ func CountingSort(a []int, max int) []int {
 	}
 	r := make([]int, len(a))
 	for i := len(a) - 1; i >= 0; i-- {
-		r[c[a[i]]-1] = a[i]
-		c[a[i]]--
+		r[c[a[i]]-1 /* c[a[i]]は数なので-1してindex化 */] = a[i]
+		c[a[i]]-- /* 一つ消費したのでデクリメント */
 	}
 	return r
 }
