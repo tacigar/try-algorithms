@@ -63,9 +63,44 @@ func (h Heap) Adjust() {
 	}
 }
 
+func (h Heap) Insert(value int) Heap {
+	hh := append(h, value)
+
+	var fn func(i int)
+	fn = func(i int) {
+		pi := Parent(i)
+		if pi >= 1 && hh[i] > hh[pi] {
+			hh[i], hh[pi] = hh[pi], hh[i]
+			fn(pi)
+		}
+	}
+	fn(len(hh) - 1)
+	return hh
+}
+
+func (h Heap) DeleteRoot() Heap {
+	r := h[len(h)-1]
+	hh := h[:len(h)-1]
+	hh[1] = r
+	hh.AdjustDown(1)
+	return hh
+}
+
 func main() {
-	h := NewHeap([]int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7})
-	fmt.Println(h)
+	h := NewHeap([]int{4, 1, 3, 2, 9, 10, 14, 8, 7})
+
 	h.Adjust()
 	fmt.Println(h)
+	hh := h.Insert(16)
+	fmt.Println(hh)
+	hhh := hh.DeleteRoot()
+	fmt.Println(hhh)
+	hhhh := hhh.DeleteRoot()
+	fmt.Println(hhhh)
+	h5 := hhhh.DeleteRoot()
+	fmt.Println(h5)
+	h6 := h5.DeleteRoot()
+	fmt.Println(h6)
+	h7 := h6.DeleteRoot()
+	fmt.Println(h7)
 }
