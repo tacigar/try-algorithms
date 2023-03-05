@@ -6,9 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestQuickSortIntSlice(t *testing.T) {
+func TestBubbleSortIntSlice(t *testing.T) {
 	input := IntSlice(make([]int, len(ints)))
 	copy(input, ints)
-	QuickSort(IntSlice(input))
+	BubbleSort(IntSlice(input))
 	assert.True(t, IsSorted(input))
 }
