@@ -44,6 +44,9 @@ func mergeSort(arr []int, l, r int) {
 		m := (l + r) / 2
 		mergeSort(arr, l, m)
 		mergeSort(arr, m+1, r)
+
+		// ここでm+1を渡すことが非常に重要
+		// もしmを渡してしまった場合、右側のイテレータと左側のイテレータが重なるので挙動がおかしくなる
 		merge(arr, l, m+1, r)
 	}
 }
